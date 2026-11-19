@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Word to PDF Studio | แปลงและรวมไฟล์ PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+  :root{font-family:Inter,'IBM Plex Sans Thai',sans-serif;color:#1b2940;background:#f7f9fc;font-synthesis:none}
+  *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse 75% 45% at 50% -10%,#e3f2ff 0%,#f7f9fc 68%)}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}
+  .wrap{max-width:1020px;margin:auto;padding:25px 22px 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.5px;font-size:17px}.brandmark{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:linear-gradient(140deg,#4c9de8,#2270c5);color:white;font-weight:800;box-shadow:0 6px 18px #2175c438}.tag{font-size:12px;background:white;border:1px solid #dfebf5;padding:7px 13px;border-radius:100px;color:#5a728e}
+  .intro{text-align:center;margin:63px 0 31px}.eyebrow{display:inline-flex;align-items:center;border:1px solid #c9e4fa;border-radius:100px;background:#eaf6ff;color:#2175bc;font-weight:700;font-size:12px;padding:7px 13px;letter-spacing:.3px}.intro h1{margin:18px 0 12px;font-size:clamp(32px,5.2vw,52px);line-height:1.22;font-weight:800;letter-spacing:-1.9px}.intro h1 span{color:#348bd7}.intro p{color:#6c7d91;margin:0;font-size:15px;line-height:1.8}
+  .panel{background:white;border:1px solid #e6ecf3;border-radius:22px;box-shadow:0 14px 60px #233d5e0a;padding:27px}.drop{min-height:220px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:9px;border:2px dashed #b8d8f2;background:#f8fcff;border-radius:16px;transition:.2s;cursor:pointer;padding:24px}.drop:hover,.drop.drag{border-color:#277fce;background:#edf7ff}.upload-icon{width:58px;height:58px;border-radius:18px;background:#e5f3ff;display:grid;place-items:center;color:#2b83cd;margin-bottom:7px}.drop strong{font-size:17px}.drop small{color:#8b9bae}.pick{border:1px solid #c5dff4;color:#2678c3;background:white;font-weight:700;padding:10px 19px;border-radius:10px;margin-top:7px}.sectionHead{margin:30px 0 15px;display:flex;align-items:center;justify-content:space-between;gap:15px}.sectionHead h2{font-size:16px;letter-spacing:-.3px;margin:0}.muted{color:#92a1b2;font-size:12px}.txtBtn{border:0;background:transparent;color:#4388c4;font-size:12px;font-weight:700;padding:5px}.fileList{display:grid;gap:9px}.empty{padding:20px 0;text-align:center;color:#99a7b7;font-size:13px}.fileRow{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #edf0f5;border-radius:13px;min-width:0;background:#fff}.docicon{height:41px;width:41px;flex:0 0 41px;border-radius:10px;background:#eaf3ff;color:#2d70b9;font-weight:800;font-size:11px;display:grid;place-items:center}.fileInfo{flex:1;min-width:0}.fname{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fsize{color:#97a6b6;font-size:11px;margin-top:4px}.actions{display:flex;gap:4px}.small{border:1px solid #edf0f5;background:#fff;border-radius:8px;color:#7891a8;padding:5px 9px;font-size:16px}.small:hover{background:#eef6fe;color:#2e77b7}.small.danger:hover{background:#fff1f1;color:#c34a4a}
+  .choiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.choice{position:relative;display:flex;gap:13px;border:1.5px solid #e4eaf1;border-radius:14px;padding:17px 16px;cursor:pointer;transition:.2s;align-items:flex-start}.choice input{accent-color:#2d86d0;margin-top:3px}.choice.selected{border-color:#388fe0;background:#f5fbff;box-shadow:0 0 0 2px #e3f2ff}.choice strong{font-size:13px;display:block}.choice p{font-size:11px;color:#8091a4;margin:5px 0 0;line-height:1.6}.footInput{display:flex;align-items:center;margin-top:16px;gap:12px;flex-wrap:wrap}.footInput label{font-weight:700;font-size:12px}.footInput input{flex:1;min-width:190px;border:1px solid #dae5ef;border-radius:10px;padding:11px 13px;outline:none;font-size:13px}.footInput input:focus{border-color:#3d96df}.suffix{color:#8ba0b3;font-size:12px}.convert{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:12px;color:#fff;background:linear-gradient(115deg,#2482d1,#1667b3);font-weight:700;padding:17px 19px;font-size:15px;margin-top:23px;box-shadow:0 10px 25px #217bc82e}.convert:hover:not(:disabled){filter:brightness(1.06)}.progress{display:none;margin-top:18px}.progress.show{display:block}.bar{height:9px;border-radius:9px;background:#e8f2fb;overflow:hidden}.barFill{height:100%;width:0;background:linear-gradient(90deg,#74bff1,#257dcb);transition:width .2s}.progressMsg{margin-top:9px;display:flex;justify-content:space-between;font-size:12px;color:#56738f;gap:10px}.alert{display:none;padding:12px 14px;border-radius:11px;margin-top:15px;font-size:12px;line-height:1.6}.alert.show{display:block}.alert.error{background:#fff3f3;border:1px solid #ffd9d9;color:#ab4242}.alert.success{background:#effaf4;border:1px solid #d0eddb;color:#278450}
+  .features{margin-top:21px;display:flex;justify-content:center;gap:30px;flex-wrap:wrap;font-size:12px;color:#7d90a5}.features span{display:inline-flex;gap:8px;align-items:center}.features b{color:#338bd0;font-size:16px}.footer{text-align:center;margin-top:42px;color:#9aa8b7;font-size:11px;line-height:1.8}.hidden{display:none!important}
+  /* The original DOCX layout is rendered off-screen. Keep it in layout for accurate capture. */
+  #renderHost{position:fixed;top:0;left:-100000px;z-index:-99;width:max-content;pointer-events:none;background:#fff}#renderHost .docx-wrapper{padding:0!important;background:transparent!important}#renderHost section.docx{margin:0!important;box-shadow:none!important}
+  @media(max-width:620px){.wrap{padding:17px 14px 55px}.tag{display:none}.intro{margin:43px 0 25px}.intro h1{letter-spacing:-1px}.panel{padding:16px}.choiceGrid{grid-template-columns:1fr}.features{gap:13px}.drop{min-height:208px}.fileRow{gap:7px;padding:10px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand"><span class="brandmark">W<span style="color:#bce1ff">P</span></span>Word to PDF <span style="color:#4491d6">Studio</span></div><div class="tag">100% Browser Processing</div></header>
+  <section class="intro"><div class="eyebrow">✦ DOCUMENT CONVERTER</div><h1>จัดการไฟล์ Word<br><span>เป็น PDF ได้ในที่เดียว</span></h1><p>แปลงเอกสารหลายไฟล์พร้อมกัน เลือกรวมเป็น PDF เดียว<br>หรือดาวน์โหลดแยกไฟล์ได้อย่างง่ายดาย</p></section>
+  <main class="panel">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="เลือกไฟล์ Word"><div class="upload-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V3m0 0-5 5m5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div><strong>ลากไฟล์ Word มาวางที่นี่</strong><small>รองรับไฟล์ .docx หลายไฟล์พร้อมกัน</small><button class="pick" id="pick" type="button">+ เลือกไฟล์จากเครื่อง</button></div>
+    <input id="picker" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple hidden>
+    <div class="sectionHead"><h2>ไฟล์ที่เลือก <span id="count" class="muted">(0 ไฟล์)</span></h2><button type="button" id="clear" class="txtBtn">ล้างทั้งหมด</button></div>
+    <div class="fileList" id="fileList"><div class="empty">ยังไม่มีไฟล์ที่เลือก</div></div>
+    <div class="sectionHead" style="margin-top:34px"><h2>รูปแบบการดาวน์โหลด</h2></div>
+    <div class="choiceGrid" id="choices">
+      <label class="choice selected"><input type="radio" name="mode" value="merge" checked><div><strong>รวมเป็น PDF ไฟล์เดียว</strong><p>รวมทุกเอกสารตามลำดับด้านบนเป็น PDF เดียว</p></div></label>
+      <label class="choice"><input type="radio" name="mode" value="separate"><div><strong>แยกเป็น PDF แต่ละไฟล์</strong><p>แปลงแต่ละเอกสารและดาวน์โหลดรวมเป็น ZIP</p></div></label>
+    </div>
+    <div id="nameWrap" class="footInput"><label for="outputName">ชื่อไฟล์ PDF</label><input id="outputName" value="รวมเอกสาร" maxlength="150" placeholder="ตั้งชื่อไฟล์ PDF"><span class="suffix">.pdf</span></div>
+    <button type="button" class="convert" id="convert" disabled>⇩ <span id="convertText">แปลงเป็น PDF</span></button>
+    <div id="progress" class="progress" aria-live="polite"><div class="bar"><div class="barFill" id="barFill"></div></div><div class="progressMsg"><span id="status">กำลังเตรียมไฟล์...</span><span id="percent">0%</span></div></div>
+    <div id="alert" class="alert" role="status"></div>
+  </main>
+  <div class="features"><span><b>✓</b> ไม่ต้องสมัครสมาชิก</span><span><b>✓</b> จัดลำดับไฟล์ได้</span><span><b>✓</b> ไฟล์ไม่ถูกอัปโหลดขึ้นเซิร์ฟเวอร์</span></div>
+  <footer class="footer">Word to PDF Studio • แปลงเอกสารภายในเบราว์เซอร์ของคุณ<br>หมายเหตุ: การจัดหน้าอาจแตกต่างจาก Microsoft Word สำหรับเอกสารที่มีรูปแบบซับซ้อน</footer>
+</div>
+<div id="renderHost" aria-hidden="true"></div>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx-preview@0.3.7/dist/docx-preview.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+(()=>{
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ const drop=$('drop'),picker=$('picker'),list=$('fileList'),convert=$('convert'),alertBox=$('alert');
+ let files=[],busy=false;
+ function mode(){return document.querySelector('input[name="mode"]:checked').value}
+ function prettySize(n){return n<1048576?(n/1024).toFixed(1)+' KB':(n/1048576).toFixed(2)+' MB'}
+ function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function showAlert(message,type='error'){alertBox.className='alert show '+type;alertBox.textContent=message}
+ function hideAlert(){alertBox.className='alert';alertBox.textContent=''}
+ function refresh(){
+   $('count').textContent=`(${files.length} ไฟล์)`;convert.disabled=!files.length||busy;$('clear').disabled=busy;
+   $('nameWrap').classList.toggle('hidden',mode()!=='merge');
+   document.querySelectorAll('.choice').forEach(c=>c.classList.toggle('selected',c.querySelector('input').checked));
+   if(!files.length){list.innerHTML='<div class="empty">ยังไม่มีไฟล์ที่เลือก</div>';return}
+   list.innerHTML=files.map((item,i)=>`<div class="fileRow"><div class="docicon">DOCX</div><div class="fileInfo"><div class="fname" title="${escapeHTML(item.file.name)}">${escapeHTML(item.file.name)}</div><div class="fsize">${prettySize(item.file.size)} · ลำดับที่ ${i+1}</div></div><div class="actions"><button type="button" class="small" data-action="up" data-index="${i}" aria-label="เลื่อนขึ้น" title="เลื่อนขึ้น" ${busy||i===0?'disabled':''}>↑</button><button type="button" class="small" data-action="down" data-index="${i}" aria-label="เลื่อนลง" title="เลื่อนลง" ${busy||i===files.length-1?'disabled':''}>↓</button><button type="button" class="small danger" data-action="remove" data-index="${i}" aria-label="ลบไฟล์" title="ลบไฟล์" ${busy?'disabled':''}>×</button></div></div>`).join('');
+ }
+ function addFiles(input){if(busy)return;let incoming=Array.from(input);let rejected=0,duplicate=0;
+   for(const f of incoming){if(!/\.docx$/i.test(f.name)){rejected++;continue}
+     if(files.some(x=>x.file.name===f.name&&x.file.size===f.size&&x.file.lastModified===f.lastModified)){duplicate++;continue}
+     files.push({file:f,id:crypto.randomUUID?crypto.randomUUID():String(Math.random())})}
+   refresh();hideAlert();if(rejected)showAlert(`มีไฟล์ ${rejected} ไฟล์ที่ไม่รองรับ กรุณาใช้ .docx (หากเป็น .doc แบบเก่า ให้เปิดด้วย Word แล้ว Save As เป็น .docx ก่อน)`);else if(duplicate)showAlert(`ข้ามไฟล์ที่ซ้ำกัน ${duplicate} ไฟล์`,'success');
+ }
+ $('pick').addEventListener('click',e=>{e.stopPropagation();picker.click()});drop.addEventListener('click',()=>picker.click());drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();picker.click()}});
+ picker.addEventListener('change',()=>{addFiles(picker.files);picker.value=''}) ;
+ ['dragenter','dragover'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+ list.addEventListener('click',e=>{if(busy)return;const b=e.target.closest('button[data-action]');if(!b)return;const i=Number(b.dataset.index);if(b.dataset.action==='remove'){files.splice(i,1)}if(b.dataset.action==='up'&&i>0){[files[i-1],files[i]]=[files[i],files[i-1]]}if(b.dataset.action==='down'&&i<files.length-1){[files[i+1],files[i]]=[files[i],files[i+1]]}refresh()});
+ $('clear').addEventListener('click',()=>{if(busy)return;files=[];hideAlert();refresh()});document.querySelectorAll('input[name="mode"]').forEach(r=>r.addEventListener('change',refresh));
+ function progress(p,msg){$('progress').classList.add('show');$('barFill').style.width=`${Math.round(p)}%`;$('percent').textContent=`${Math.round(p)}%`;$('status').textContent=msg}
+ function download(blob,name){const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
+ function filenameBase(name){return name.replace(/\.docx$/i,'').replace(/[\\/:*?"<>|\x00-\x1f]/g,'_').trim()||'document'}
+ const pause=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+ async function waitImages(root){await Promise.all(Array.from(root.querySelectorAll('img')).map(img=>img.complete?Promise.resolve():new Promise(r=>{img.addEventListener('load',r,{once:true});img.addEventListener('error',r,{once:true});setTimeout(r,4000)})));if(document.fonts&&document.fonts.ready)await document.fonts.ready}
+ async function toPdf(file,index,total){
+   const host=$('renderHost');host.innerHTML='';
+   const data=await file.arrayBuffer();
+   await window.docx.renderAsync(data,host,host,{breakPages:true,ignoreLastRenderedPageBreak:false,inWrapper:true,useBase64URL:true});
+   await waitImages(host);await pause();
+   let pages=Array.from(host.querySelectorAll('section.docx'));if(!pages.length)pages=Array.from(host.querySelectorAll('.docx'));if(!pages.length)throw Error('ไม่พบหน้าของเอกสาร Word');
+   const pdf=await PDFLib.PDFDocument.create();
+   for(let j=0;j<pages.length;j++){
+     progress(5+((index+(j/pages.length))/total)*88,`กำลังแปลง ${file.name} (หน้า ${j+1}/${pages.length})`);
+     const el=pages[j];const w=Math.ceil(el.getBoundingClientRect().width),h=Math.ceil(el.getBoundingClientRect().height);
+     if(!w||!h)throw Error('ไม่สามารถอ่านขนาดหน้าของเอกสาร');
+     const scale=Math.min(1.7,Math.max(1,7000/Math.max(w,h)));
+     const canvas=await html2canvas(el,{backgroundColor:'#ffffff',scale,useCORS:true,logging:false,scrollX:0,scrollY:0,windowWidth:Math.max(1200,w+20)});
+     const img=await pdf.embedJpg(await new Promise((resolve,reject)=>canvas.toBlob(b=>b?b.arrayBuffer().then(resolve).catch(reject):reject(Error('สร้างภาพหน้าเอกสารไม่สำเร็จ')),'image/jpeg',0.91)));
+     const pg=pdf.addPage([w*.75,h*.75]);pg.drawImage(img,{x:0,y:0,width:w*.75,height:h*.75});canvas.width=0;canvas.height=0;
+   }
+   host.innerHTML='';return pdf;
+ }
+ convert.addEventListener('click',async()=>{
+   if(busy||!files.length)return;
+   if(!window.docx||!window.html2canvas||!window.PDFLib||!window.JSZip){showAlert('โหลดเครื่องมือแปลงไฟล์ไม่สำเร็จ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วรีเฟรชหน้าเว็บ');return}
+   busy=true;hideAlert();refresh();$('convertText').textContent='กำลังแปลงเอกสาร...';progress(2,'กำลังเตรียมการแปลง');
+   const queue=files.slice();const chosen=mode();let completed=0;
+   try{
+     if(chosen==='merge'){
+       const merged=await PDFLib.PDFDocument.create();
+       for(let i=0;i<queue.length;i++){
+         let one=await toPdf(queue[i].file,i,queue.length);const pages=await merged.copyPages(one,one.getPageIndices());for(const p of pages)merged.addPage(p);completed++;
+       }
+       progress(97,'กำลังสร้างไฟล์ PDF รวม...');const bytes=await merged.save();const name=($('outputName').value.trim()||'รวมเอกสาร').replace(/[\\/:*?"<>|\x00-\x1f]/g,'_')+'.pdf';download(new Blob([bytes],{type:'application/pdf'}),name);
+     }else{
+       const zip=new JSZip(),seen=new Map();
+       for(let i=0;i<queue.length;i++){
+         const one=await toPdf(queue[i].file,i,queue.length);const base=filenameBase(queue[i].file.name);let n=seen.get(base)||0;seen.set(base,n+1);const name=base+(n?` (${n+1})`:'')+'.pdf';zip.file(name,await one.save());completed++;
+       }
+       progress(97,'กำลังบีบอัดไฟล์ ZIP...');const blob=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:5}});download(blob,'Word-to-PDF-แยกไฟล์.zip');
+     }
+     progress(100,'ดาวน์โหลดเสร็จเรียบร้อย');showAlert(`แปลงสำเร็จ ${completed} ไฟล์ ${chosen==='merge'?'และรวมเป็น PDF เดียว':'และจัดเก็บใน ZIP'}`,'success');
+   }catch(err){console.error(err);showAlert(`แปลงไม่สำเร็จ: ${err.message||'เกิดข้อผิดพลาด'} กรุณาลองไฟล์อื่นหรือแปลงด้วย Microsoft Word หากเอกสารซับซ้อน`)}
+   finally{busy=false;$('renderHost').innerHTML='';$('convertText').textContent='แปลงเป็น PDF';refresh()}
+ });
+ refresh();
+})();
+</script>
+</body>
+</html>
